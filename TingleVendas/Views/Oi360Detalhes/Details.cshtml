@@ -1,0 +1,107 @@
+@model TingleVendas.Models.Oi360Detalhes
+
+@{
+    ViewData["Title"] = "Informações adicionais";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Oi360Detalhes</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            Número do pedido
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.NumeroPedidoNavigation.NumeroDoPedido)
+        </dd>
+        @*<dt class="col-sm-4">
+            Supervisor
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.SupervisorNavigation.Nome)
+        </dd>
+        <dt class="col-sm-4">
+            Vendedor
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.VendedorNavigation.Nome)
+        </dd>*@
+        <dt class="col-sm-4">
+            Status - Sistema Oi Vende
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.StatusOiVendeNavigation.DescStatus)
+        </dd>
+        <dt class="col-sm-4">
+            Protocolo - Sistema Oi Vende
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.ProtocoloOiVende)
+        </dd>
+
+        <dt class="col-sm-4">
+            Data de agendamento
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.DataAgendamento)
+        </dd>
+
+        <dt class="col-sm-4">
+            Hora de agendamento
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.HoraAgendamento)
+        </dd>
+
+        <dt class="col-sm-4">
+            Documento da venda
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.DocumentoVenda)
+        </dd>
+        <dt class="col-sm-4">
+            Documentos do cliente OK?
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CheckListDocumentoClienteOk)
+        </dd>
+        <dt class="col-sm-4">
+            Proposta OK?
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CheckListPropostaOk)
+        </dd>
+        <dt class="col-sm-4">
+            Confirmação do cliente?
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CheckListConfirmacaoClienteOk)
+        </dd>
+        <dt class="col-sm-4">
+            Observação do auditor
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.ObservacaoAuditor)
+        </dd>
+        <dt class="col-sm-4">
+            Avaliação do atendimento (0 a 10)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.NotaAtendimento)
+        </dd>
+        <dt class="col-sm-4">
+            Observação da pendência
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.ObservacaoPendencia)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" asp-route-pAno="@ViewData["anoCorrente"]" asp-route-pMes="@ViewData["mesCorrente"]" >Alterar</a> |
+    <a asp-controller="Oi360" asp-action="Index" asp-route-pAno="@ViewData["anoCorrente"]" asp-route-pMes="@ViewData["mesCorrente"]">Voltar</a>
+  
+</div>

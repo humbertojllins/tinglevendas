@@ -1,0 +1,676 @@
+@model TingleVendas.Models.Oi360
+
+@{ ViewData["Title"] = "Create"; }
+
+<html>
+<body class="hold-transition login-page">
+    <h1>Create</h1>
+
+    <h4>Oi360</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form id="frmInput" asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="NumeroDoPedido" class="control-label">Protocolo do sistema</label>
+                    <input asp-for="NumeroDoPedido" style="text-transform:uppercase" class="form-control" />
+                    <span asp-validation-for="NumeroDoPedido" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DataEmQueOPedidoFoiRealizado" class="control-label">Data em que o pedido foi realizado</label>
+                    <input asp-for="DataEmQueOPedidoFoiRealizado" type="text" data-mask="00/00/0000" class="form-control" />
+                    <span asp-validation-for="DataEmQueOPedidoFoiRealizado" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HoraEmQueOPedidoFoiRealizado" class="control-label">Hora em que o pedido foi realizado</label>
+                    <input asp-for="HoraEmQueOPedidoFoiRealizado" data-mask="00:00" class="form-control" />
+                    <span asp-validation-for="HoraEmQueOPedidoFoiRealizado" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="DataEmQueOPedidoFoiTratado" class="control-label">Sistema de entrada</label>
+                        <input asp-for="DataEmQueOPedidoFoiTratado" data-mask="00/00/0000" class="form-control" />
+                        <span asp-validation-for="DataEmQueOPedidoFoiTratado" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group">
+                    <label asp-for="HoraEmQueOPedidoFoiTratado" class="control-label">Sistema de entrada</label>
+                    <select asp-for="HoraEmQueOPedidoFoiTratado" class="form-control" asp-items="ViewBag.SistEntrada"></select>
+                    <span asp-validation-for="HoraEmQueOPedidoFoiTratado" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TipoVenda" class="control-label">Tipo de venda</label>
+                    <select asp-for="TipoVenda" class="form-control" asp-items="ViewBag.TipoVenda"></select>
+                    <span asp-validation-for="TipoVenda" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Idsupervisorinterno" class="control-label">Supervisor interno</label>
+                    <select asp-for="Idsupervisorinterno" id="cboSupInt" class="form-control" asp-items="ViewBag.SupInterno" onChange="CarregaVendedor(1)"></select>
+                    <span asp-validation-for="Idsupervisorinterno" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Idvendedorinterno" class="control-label">Vendedor interno</label>
+                    <select asp-for="Idvendedorinterno" id="cboVendInt" class="form-control" asp-items="ViewBag.VendInterno"></select>
+                    <span asp-validation-for="Idvendedorinterno" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Idsupervisorexterno" class="control-label">Supervisor externo</label>
+                    <select asp-for="Idsupervisorexterno" id="cboSupExt" class="form-control" asp-items="ViewBag.SupExterno" onChange="CarregaVendedor(0)"></select>
+                    <span asp-validation-for="Idsupervisorexterno" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Idvendedorexterno" class="control-label">Vendedor externo</label>
+                    <select asp-for="Idvendedorexterno" id="cboVendExt" class="form-control" asp-items="ViewBag.VendExterno"></select>
+                    <span asp-validation-for="Idvendedorexterno" class="text-danger"></span>
+                </div>
+
+                @*<div class="form-group">
+                        <label asp-for="Nacionalidade" class="control-label">Gênero</label>
+                        <select asp-for="Nacionalidade" class="form-control" asp-items="ViewBag.Genero"></select>
+                        <span asp-validation-for="Nacionalidade" class="text-danger"></span>
+                    </div>*@
+
+                <div class="form-group">
+                    <label asp-for="NomeCliente" class="control-label"></label>
+                    <input asp-for="NomeCliente" style="text-transform:uppercase" class="form-control" />
+                    <span asp-validation-for="NomeCliente" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Genero" class="control-label">Gênero</label>
+                    <select asp-for="Genero" class="form-control" asp-items="ViewBag.Genero"></select>
+                    <span asp-validation-for="Genero" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="DataDeNascimento" class="control-label"></label>
+                        <input asp-for="DataDeNascimento" data-mask="00/00/0000" class="form-control" />
+                        <span asp-validation-for="DataDeNascimento" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group">
+                    <label asp-for="Cpf" class="control-label"></label>
+                    <input asp-for="Cpf" data-mask="000.000.000-00" class="form-control" />
+                    <span asp-validation-for="Cpf" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="Rg" class="control-label"></label>
+                        <input asp-for="Rg" class="form-control" />
+                        <span asp-validation-for="Rg" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RgOExpedidor" class="control-label"></label>
+                        <input asp-for="RgOExpedidor" class="form-control" />
+                        <span asp-validation-for="RgOExpedidor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RgDataExpedicao" class="control-label"></label>
+                        <input asp-for="RgDataExpedicao" data-mask="00/00/0000" class="form-control" />
+                        <span asp-validation-for="RgDataExpedicao" class="text-danger"></span>
+                    </div>*@
+
+
+                <div class="form-group">
+                    <label asp-for="ContatoPrincipal" class="control-label"></label>
+                    <input asp-for="ContatoPrincipal" data-mask="(00)00000-0000" class="form-control" />
+                    <span asp-validation-for="ContatoPrincipal" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="ContatoPrincipalWhatsapp" class="control-label"></label>
+                        <input asp-for="ContatoPrincipalWhatsapp" data-mask="(00)00000-0000" class="form-control" />
+                        <span asp-validation-for="ContatoPrincipalWhatsapp" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group">
+                    <label asp-for="ContatoSecundario" class="control-label"></label>
+                    <input asp-for="ContatoSecundario" data-mask="(00)00000-0000" class="form-control" />
+                    <span asp-validation-for="ContatoSecundario" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="ContatoSecundarioWhatsapp" class="control-label"></label>
+                        <input asp-for="ContatoSecundarioWhatsapp" data-mask="(00)00000-0000" class="form-control" />
+                        <span asp-validation-for="ContatoSecundarioWhatsapp" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contato1Nome" class="control-label"></label>
+                        <input asp-for="Contato1Nome" class="form-control" />
+                        <span asp-validation-for="Contato1Nome" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contato1Numero" class="control-label"></label>
+                        <input asp-for="Contato1Numero" class="form-control" />
+                        <span asp-validation-for="Contato1Numero" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contato2Nome" class="control-label"></label>
+                        <input asp-for="Contato2Nome" class="form-control" />
+                        <span asp-validation-for="Contato2Nome" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contato2Numero" class="control-label"></label>
+                        <input asp-for="Contato2Numero" class="form-control" />
+                        <span asp-validation-for="Contato2Numero" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contato3Nome" class="control-label"></label>
+                        <input asp-for="Contato3Nome" class="form-control" />
+                        <span asp-validation-for="Contato3Nome" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contato3Numero" class="control-label"></label>
+                        <input asp-for="Contato3Numero" class="form-control" />
+                        <span asp-validation-for="Contato3Numero" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group">
+                    <label asp-for="EMail" class="control-label"></label>
+                    <input asp-for="EMail" class="form-control" />
+                    <span asp-validation-for="EMail" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="MatriculaVendedor" class="control-label"></label>
+                        <input asp-for="MatriculaVendedor" class="form-control" />
+                        <span asp-validation-for="MatriculaVendedor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NomeVendedor" class="control-label"></label>
+                        <input asp-for="NomeVendedor" class="form-control" />
+                        <span asp-validation-for="NomeVendedor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FixoOi" class="control-label"></label>
+                        <input asp-for="FixoOi" class="form-control" />
+                        <span asp-validation-for="FixoOi" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group">
+                    <label asp-for="FixoPortabilidade" class="control-label">Portabilidade</label>
+                    <select asp-for="FixoPortabilidade" class="form-control" asp-items="ViewBag.Portabilidade"></select>
+                    <span asp-validation-for="FixoPortabilidade" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FixoOperadora" class="control-label">Número portabilidade</label>
+                    <input asp-for="FixoOperadora" class="form-control" />
+                    <span asp-validation-for="FixoOperadora" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FixoNumero" class="control-label">Operadora doadora</label>
+                    <input asp-for="FixoNumero" class="form-control" />
+                    <span asp-validation-for="FixoNumero" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BandaLargaTecnologia" class="control-label">Tipo de plano</label>
+                    <select asp-for="BandaLargaTecnologia" class="form-control" asp-items="ViewBag.BandaLargaTec"></select>
+                    <span asp-validation-for="BandaLargaTecnologia" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BandaLargaVelocidade" class="control-label">Velocidade fibra</label>
+                    <select asp-for="BandaLargaVelocidade" class="form-control" asp-items="ViewBag.BandaLargaVeloc"></select>
+                    <span asp-validation-for="BandaLargaVelocidade" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TvPlanoTv" class="control-label">Tipo de TV</label>
+                    <select asp-for="TvPlanoTv" class="form-control" asp-items="ViewBag.TvPlanoTv"></select>
+                    <span asp-validation-for="TvPlanoTv" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="BandaLargaDataAgendamento" class="control-label"></label>
+                        <input asp-for="BandaLargaDataAgendamento" class="form-control" />
+                        <span asp-validation-for="BandaLargaDataAgendamento" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group">
+                    <label asp-for="PeriodoAgendamentoFixoBandaLarga" class="control-label">Período agendamento</label>
+                    <select asp-for="PeriodoAgendamentoFixoBandaLarga" class="form-control" asp-items="ViewBag.PeriodoAgendamento"></select>
+
+                    <span asp-validation-for="PeriodoAgendamentoFixoBandaLarga" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="OsBandaLargaFixo" class="control-label"></label>
+                        <input asp-for="OsBandaLargaFixo" class="form-control" />
+                        <span asp-validation-for="OsBandaLargaFixo" class="text-danger"></span>
+                    </div>*@
+
+                <div class="form-group">
+                    <label asp-for="TvPontosAdicionais" class="control-label"></label>
+                    <input asp-for="TvPontosAdicionais" max="5" min="1" class="form-control" />
+                    <span asp-validation-for="TvPontosAdicionais" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TvCanaisALaCarte" class="control-label"></label>
+                    <input asp-for="TvCanaisALaCarte" class="form-control" />
+                    <span asp-validation-for="TvCanaisALaCarte" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="TvOs" class="control-label"></label>
+                        <input asp-for="TvOs" class="form-control" />
+                        <span asp-validation-for="TvOs" class="text-danger"></span>
+                    </div>*@
+                @*<div class="form-group">
+                        <label asp-for="TvDataAgendamento" class="control-label"></label>
+                        <input asp-for="TvDataAgendamento" class="form-control" />
+                        <span asp-validation-for="TvDataAgendamento" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TvPeriodoAgendamento" class="control-label"></label>
+                        <input asp-for="TvPeriodoAgendamento" class="form-control" />
+                        <span asp-validation-for="TvPeriodoAgendamento" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TvIdBundle" class="control-label"></label>
+                        <input asp-for="TvIdBundle" class="form-control" />
+                        <span asp-validation-for="TvIdBundle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ComboContratado" class="control-label"></label>
+                        <input asp-for="ComboContratado" class="form-control" />
+                        <span asp-validation-for="ComboContratado" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group">
+                    <label asp-for="PagamentoFormaDePagamento" class="control-label">Forma de pagamento</label>
+                    <select asp-for="PagamentoFormaDePagamento" id="cboFormPag" class="form-control" asp-items="ViewBag.FormaPag"></select>
+                    <span asp-validation-for="PagamentoFormaDePagamento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PagamentoBanco" class="control-label">Banco</label>
+                    <input asp-for="PagamentoBanco" id="PagamentoBanco"  class="form-control" />
+                    <span asp-validation-for="PagamentoBanco" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PagamentoAgencia" class="control-label">Agência</label>
+                    <input asp-for="PagamentoAgencia" class="form-control"  />
+                    <span asp-validation-for="PagamentoAgencia" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PagamentoConta" class="control-label">Conta</label>
+                    <input asp-for="PagamentoConta" class="form-control"  />
+                    <span asp-validation-for="PagamentoConta" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PagamentoVencimento" class="control-label">Vencimento</label>
+                    <select asp-for="PagamentoVencimento" class="form-control" asp-items="ViewBag.DataVenc"></select>
+                    <span asp-validation-for="PagamentoVencimento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InstalacaoEstado" class="control-label">Estado</label>
+                    <select asp-for="InstalacaoEstado" id="cboUf" class="form-control" asp-items="ViewBag.UF" onChange="CarregaMunicipios()"></select>
+                    <span asp-validation-for="InstalacaoEstado" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InstalacaoCidade" class="control-label">Cidade</label>
+                    <select asp-for="InstalacaoCidade" id="cboMunicipio" class="form-control" asp-items="ViewBag.Municipio"></select>
+                    <span asp-validation-for="InstalacaoCidade" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InstalacaoBairro" class="control-label"></label>
+                    <input asp-for="InstalacaoBairro" class="form-control" />
+                    <span asp-validation-for="InstalacaoBairro" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InstalacaoReferencia" class="control-label">Referência</label>
+                    <input asp-for="InstalacaoReferencia" class="form-control" />
+                    <span asp-validation-for="InstalacaoReferencia" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InstalacaoCdoeCdoi" class="control-label">Número Cdoe/Cdoi</label>
+                    <input asp-for="InstalacaoCdoeCdoi" class="form-control" />
+                    <span asp-validation-for="InstalacaoCdoeCdoi" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="PagamentoContaOnline" class="control-label"></label>
+                        <input asp-for="PagamentoContaOnline" class="form-control" />
+                        <span asp-validation-for="PagamentoContaOnline" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="PagamentoDigito" class="control-label"></label>
+                        <input asp-for="PagamentoDigito" class="form-control" />
+                        <span asp-validation-for="PagamentoDigito" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StatusPrimario" class="control-label"></label>
+                        <input asp-for="StatusPrimario" class="form-control" />
+                        <span asp-validation-for="StatusPrimario" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StatusSecundario" class="control-label"></label>
+                        <input asp-for="StatusSecundario" class="form-control" />
+                        <span asp-validation-for="StatusSecundario" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ObservacaoVendedor" class="control-label"></label>
+                        <input asp-for="ObservacaoVendedor" class="form-control" />
+                        <span asp-validation-for="ObservacaoVendedor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ObservacaoOperador" class="control-label"></label>
+                        <input asp-for="ObservacaoOperador" class="form-control" />
+                        <span asp-validation-for="ObservacaoOperador" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Operador" class="control-label"></label>
+                        <input asp-for="Operador" class="form-control" />
+                        <span asp-validation-for="Operador" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DataInicioTratamentoPedido" class="control-label"></label>
+                        <input asp-for="DataInicioTratamentoPedido" class="form-control" />
+                        <span asp-validation-for="DataInicioTratamentoPedido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="HoraInicioTratamentoPedido" class="control-label"></label>
+                        <input asp-for="HoraInicioTratamentoPedido" class="form-control" />
+                        <span asp-validation-for="HoraInicioTratamentoPedido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DataTerminoTratamentoPedido" class="control-label"></label>
+                        <input asp-for="DataTerminoTratamentoPedido" class="form-control" />
+                        <span asp-validation-for="DataTerminoTratamentoPedido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="HoraTerminoTratamentoPedido" class="control-label"></label>
+                        <input asp-for="HoraTerminoTratamentoPedido" class="form-control" />
+                        <span asp-validation-for="HoraTerminoTratamentoPedido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="InstalacaoCep" class="control-label"></label>
+                        <input asp-for="InstalacaoCep" data-mask="00.000-000" class="form-control" />
+                        <span asp-validation-for="InstalacaoCep" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="InstalacaoLogradouro" class="control-label"></label>
+                        <input asp-for="InstalacaoLogradouro" class="form-control" />
+                        <span asp-validation-for="InstalacaoLogradouro" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="InstalacaoNumero" class="control-label"></label>
+                        <input asp-for="InstalacaoNumero" class="form-control" />
+                        <span asp-validation-for="InstalacaoNumero" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="InstalacaoBairro" class="control-label"></label>
+                        <input asp-for="InstalacaoBairro" class="form-control" />
+                        <span asp-validation-for="InstalacaoBairro" class="text-danger"></span>
+                    </div>
+
+                        <div class="form-group">
+                            <label asp-for="InstalacaoComplemento1Tipo" class="control-label"></label>
+                            <input asp-for="InstalacaoComplemento1Tipo" class="form-control" />
+                            <span asp-validation-for="InstalacaoComplemento1Tipo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="InstalacaoComplemento1" class="control-label"></label>
+                            <input asp-for="InstalacaoComplemento1" class="form-control" />
+                            <span asp-validation-for="InstalacaoComplemento1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="InstalacaoComplemento2Tipo" class="control-label"></label>
+                            <input asp-for="InstalacaoComplemento2Tipo" class="form-control" />
+                            <span asp-validation-for="InstalacaoComplemento2Tipo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="InstalacaoComplemento2" class="control-label"></label>
+                            <input asp-for="InstalacaoComplemento2" class="form-control" />
+                            <span asp-validation-for="InstalacaoComplemento2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="InstalacaoComplemento3Tipo" class="control-label"></label>
+                            <input asp-for="InstalacaoComplemento3Tipo" class="form-control" />
+                            <span asp-validation-for="InstalacaoComplemento3Tipo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="InstalacaoComplemento3" class="control-label"></label>
+                            <input asp-for="InstalacaoComplemento3" class="form-control" />
+                            <span asp-validation-for="InstalacaoComplemento3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CobrancaCep" class="control-label"></label>
+                            <input asp-for="CobrancaCep" class="form-control" />
+                            <span asp-validation-for="CobrancaCep" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CobrancaLogradouro" class="control-label"></label>
+                            <input asp-for="CobrancaLogradouro" class="form-control" />
+                            <span asp-validation-for="CobrancaLogradouro" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CobrancaNumero" class="control-label"></label>
+                            <input asp-for="CobrancaNumero" class="form-control" />
+                            <span asp-validation-for="CobrancaNumero" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CobrancaBairro" class="control-label"></label>
+                            <input asp-for="CobrancaBairro" class="form-control" />
+                            <span asp-validation-for="CobrancaBairro" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CobrancaCidade" class="control-label"></label>
+                            <input asp-for="CobrancaCidade" class="form-control" />
+                            <span asp-validation-for="CobrancaCidade" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CobrancaEstado" class="control-label"></label>
+                            <input asp-for="CobrancaEstado" class="form-control" />
+                            <span asp-validation-for="CobrancaEstado" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CobrancaComplemento1Tipo" class="control-label"></label>
+                            <input asp-for="CobrancaComplemento1Tipo" class="form-control" />
+                            <span asp-validation-for="CobrancaComplemento1Tipo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CobrancaComplemento1" class="control-label"></label>
+                            <input asp-for="CobrancaComplemento1" class="form-control" />
+                            <span asp-validation-for="CobrancaComplemento1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CobrancaComplemento2Tipo" class="control-label"></label>
+                            <input asp-for="CobrancaComplemento2Tipo" class="form-control" />
+                            <span asp-validation-for="CobrancaComplemento2Tipo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CobrancaComplemento2" class="control-label"></label>
+                            <input asp-for="CobrancaComplemento2" class="form-control" />
+                            <span asp-validation-for="CobrancaComplemento2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CobrancaComplemento3Tipo" class="control-label"></label>
+                            <input asp-for="CobrancaComplemento3Tipo" class="form-control" />
+                            <span asp-validation-for="CobrancaComplemento3Tipo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CobrancaComplemento3" class="control-label"></label>
+                            <input asp-for="CobrancaComplemento3" class="form-control" />
+                            <span asp-validation-for="CobrancaComplemento3" class="text-danger"></span>
+                        </div>*@
+
+                <div class="form-group">
+                    <input type="hidden" asp-for="VendaMesAnterior" class="form-control" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="Reinput" class="form-control" value="false" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Voltar</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
+
+    <!-- jQuery -->
+    @*<script src="~/plugins/jquery/jquery.min.js"></script>*@
+    <!-- Bootstrap 4 -->
+    <!--<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+        <!-- AdminLTE App -->
+        <!--<script src="~/dist/js/adminlte.min.js"></script>-->
+
+        <script>
+            @*$(document).ready(function () {
+            $('dtPedido').mask('00/00/0000');
+        });*@
+
+  function CarregaMunicipios() {
+      var cbo = document.getElementById("cboUf");
+      var valor = cbo.options[cbo.selectedIndex].value;
+
+            $.ajax(
+            {
+              type: "POST",
+              url: '@Url.Action("CarregaComboMunicipio", "Oi360")',
+                    data: {
+                        uf: valor
+              },
+              error: function (result) {
+                alert("There is a Problem, Try Again!");
+              },
+              success: function (result) {
+                    //console.log(result);
+                  if (result.status == true) {
+                      //console.log(result.data);
+                      $('#cboMunicipio').html('');
+
+                      var options = '';
+                      //options += '<option value="Select">Select</option>';
+                      for (var i = 0; i < result.data.length; i++) {
+                          options += '<option value="' + result.data[i].municipio1 + '">' + result.data[i].municipio1 + '</option>';
+                      }
+                      $('#cboMunicipio').append(options);
+                }
+                else {
+                    alert(result.message);
+                    //$("#GFG_Button").prop("disabled", false);
+                }
+              }
+
+            });
+
+        }
+
+        function CarregaVendedor(interno) {
+            var cbo;
+            if (interno == 0) {
+                cbo = document.getElementById("cboSupExt");
+            } else {
+                cbo = document.getElementById("cboSupInt");
+            }
+
+            var valor = cbo.options[cbo.selectedIndex].value;
+
+            $.ajax(
+            {
+              type: "POST",
+              url: '@Url.Action("CarregaComboVendedor", "Oi360")',
+                    data: {
+                        pInterno: interno,
+                        idSup: valor
+              },
+              error: function (result) {
+                alert("There is a Problem, Try Again!");
+              },
+              success: function (result) {
+                    //console.log(result);
+                  console.log(result.data);
+
+                  if (result.status == true) {
+
+                      if (interno == 0)
+                      {
+                          $('#cboVendExt').html('');
+                      } else {
+                          $('#cboVendInt').html('');
+                      }
+
+
+                      var options = '';
+                      //options += '<option value="Select">Select</option>';
+                      options += "<option value='0'></option>";
+
+                      for (var i = 0; i < result.data.length; i++)
+                      {
+                          options += '<option value="' + result.data[i].id + '">' + result.data[i].nome + '</option>';
+                      }
+
+                      if (interno == 0)
+                      {
+                          $('#cboVendExt').append(options);
+                      } else {
+                          $('#cboVendInt').append(options);
+                      }
+                }
+                else {
+                    alert(result.message);
+                    //$("#GFG_Button").prop("disabled", false);
+                }
+              }
+
+            });
+
+        }
+
+        function ValidaDadosConta(obj) {
+            var cbo;
+
+            cbo = document.getElementById("cboFormPag");
+
+            var valor = cbo.options[cbo.selectedIndex].value;
+            //console.log(valor);
+            $.ajax(
+            {
+              type: "POST",
+              url: '@Url.Action("ValidaDadosConta", "Oi360")',
+                    data: {
+                        formaPagamento: valor,
+                        campoNome: obj.id,
+                        campoVal: obj.value
+
+              },
+              error: function (result) {
+                alert("There is a Problem, Try Again!");
+              },
+              success: function (result) {
+                    //console.log(result);
+                  console.log('Voltou da função');
+                  //$('#frmInput').validate();
+                  if (result.status == true) {
+                      //alert(result.status);
+                      @*if (interno == 0)
+                      {
+                          $('#cboVendExt').html('');
+                      } else {
+                          $('#cboVendInt').html('');
+                      }
+
+
+                      var options = '';
+                      //options += '<option value="Select">Select</option>';
+                      options += "<option value='0'></option>";
+
+                      for (var i = 0; i < result.data.length; i++)
+                      {
+                          options += '<option value="' + result.data[i].id + '">' + result.data[i].nome + '</option>';
+                      }
+
+                      if (interno == 0)
+                      {
+                          $('#cboVendExt').append(options);
+                      } else {
+                          $('#cboVendInt').append(options);
+                      }*@
+                }
+                else {
+                    //alert(result.message);
+                    //$("#GFG_Button").prop("disabled", false);
+                }
+              }
+
+            });
+
+        }
+
+        </script>
+    </body>
+</html>

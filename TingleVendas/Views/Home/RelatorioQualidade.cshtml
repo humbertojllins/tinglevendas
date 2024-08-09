@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!--<div class="text-center">
+    <h1 class="display-4">Olá</h1>
+    <p>Bem-vindo ao sistema de gestão de vendas da MDV</p>
+
+</div>-->
+
+<section class="content">
+    <div class="container-fluid">
+        <form asp-action="RelatorioQualidade">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Selecione o ano</label>
+                        <input type="number" id="cboAno" name="pAno" class="form-control" style="width:200px" value="@ViewData["anoCorrente"]" min="2020" step="1">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Selecione o mês</label>
+                        <select id="cboMes" name="pMes" class="form-control" asp-items="ViewBag.ListaMeses"></select>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+
+                        <label style="visibility:hidden">Botão</label>
+                        <input type="submit" id="GFG_Button" style="width:150px" value="Pesquisar" class="btn btn-primary btn-block">
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewData["QtdVendas"]</h3>
+
+                        <p>Vendas realizadas</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>@ViewData["QtdInfoAdd"]<sup style="font-size: 20px">%</sup></h3>
+
+                        <p>Informações adicionais</p>
+
+
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@ViewData["QtdCheckOk"]<sup style="font-size: 20px">%</sup></h3>
+
+                        <p>Qualidade das auditorias</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@ViewData["QtdReinput"]</h3>
+
+                        <p>Reinput</p>
+                    </div>
+                    <div class="icon">
+                        <i class="nav-icon fas fa-redo-alt"></i>
+                    </div>
+                    <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>

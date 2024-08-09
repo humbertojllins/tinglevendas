@@ -1,0 +1,284 @@
+@model IEnumerable<TingleVendas.Models.Oi360>
+
+@{
+    ViewData["Title"] = "Planilha Oi360";
+}
+    <body onload="grid();">
+        <h1>Planilha Oi360</h1>
+
+        <p>
+            @*@if (Convert.ToString(ViewData["grupo"]).Equals("1"))
+        {
+            <a asp-action="Create">Novo Cadastro</a>
+        }*@
+            <a asp-action="Create">Novo Cadastro</a>
+        </p>
+        <form asp-action="Index">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Selecione o ano</label>
+                        <input type="number" id="cboAno" name="pAno" class="form-control" style="width:200px" value="@ViewData["anoCorrente"]" min="2020" step="1">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Selecione o mês</label>
+                        <select id="cboMes" name="pMes" class="form-control" asp-items="ViewBag.ListaMeses"></select>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+
+                        <label style="visibility:hidden">Botão</label>
+                        <input type="submit" id="GFG_Button" style="width:150px" value="Pesquisar" class="btn btn-primary btn-block">
+                    </div>
+                </div>
+            </div>
+         </form>
+            <div style="width:100%;overflow-x:auto;white-space:nowrap">
+                <table id="dtprincipal" class="display nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                Detalhes
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NumeroDoPedido)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TipoVenda)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NomeCliente)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cpf)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Rg)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DataEmQueOPedidoFoiRealizado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HoraEmQueOPedidoFoiRealizado)
+                            </th>
+                            <th>
+                                Sistema de entrada
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ContatoPrincipal)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ContatoPrincipalWhatsapp)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.InstalacaoCep)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.InstalacaoLogradouro)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.InstalacaoNumero)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.InstalacaoBairro)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.InstalacaoEstado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.InstalacaoCidade)
+                            </th>
+                            <th>
+                                Supervisor interno
+                            </th>
+                            <th>
+                                Vendedor interno
+                            </th>
+                            <th>
+                                Supervisor externo
+                            </th>
+                            <th>
+                                Vendedor externo
+                            </th>
+                            <th>
+                                Data do agendamento
+                            </th>
+                            <th>
+                                Hora do agendamento
+                            </th>
+                            <th>
+                                Venda no mês anterior
+                            </th>
+                            <th>
+                                Confirmação de Reinput
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                <a asp-action="InfoAd" asp-route-id="@item.NumeroDoPedido" asp-route-pAno="@Convert.ToDateTime(@item.DataEmQueOPedidoFoiRealizado).Year" asp-route-pMes="@Convert.ToDateTime(@item.DataEmQueOPedidoFoiRealizado).Month">Inf. adicionais</a> |
+                                @if (item.Oi360Detalhes.Count() > 0)
+                                {
+                        <strong>OK | </strong>
+                                            <a href="@item.Oi360Detalhes.FirstOrDefault().DocumentoVenda" target="_blank">
+                                                <img src="~/arquivo.png" style="width:30px; height:30px" title="@item.Oi360Detalhes.FirstOrDefault().DocumentoVenda">
+                                            </a> //@Html.DisplayFor(modelItem => item.Oi360Detalhes.FirstOrDefault().NumeroPedido)
+                                        }
+                                        else
+                                        {
+                        <strong style="color:orangered">Pendente</strong>}
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NumeroDoPedido)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TipoVenda)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeCliente)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cpf)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Rg)
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => @Convert.ToDateTime(item.DataEmQueOPedidoFoiRealizado).ToString("dd/MM/yyyy"))*@
+                                @Convert.ToDateTime(item.DataEmQueOPedidoFoiRealizado).ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HoraEmQueOPedidoFoiRealizado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HoraEmQueOPedidoFoiTratado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContatoPrincipal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContatoPrincipalWhatsapp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InstalacaoCep)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InstalacaoLogradouro)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InstalacaoNumero)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InstalacaoBairro)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InstalacaoEstado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InstalacaoCidade)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdsupervisorinternoNavigation.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdvendedorinternoNavigation.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdsupervisorexternoNavigation.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdvendedorexternoNavigation.Nome)
+                            </td>
+
+                            @*<td>
+            @if (item.Oi360Detalhes.Count() > 0)
+            {
+                @if (@item.Oi360Detalhes.FirstOrDefault().Supervisor != 0)
+                {
+                @item.Oi360Detalhes.FirstOrDefault().SupervisorNavigation.Nome.ToString()}
+            }
+        </td>
+        <td>
+            @if (item.Oi360Detalhes.Count() > 0)
+            {
+            @if (@item.Oi360Detalhes.FirstOrDefault().Vendedor != 0)
+            {
+            @item.Oi360Detalhes.FirstOrDefault().VendedorNavigation.Nome.ToString() }
+                else
+                {
+                    <p>Nulo</p>}}
+        </td>*@
+                            <td>
+                                @if (item.Oi360Detalhes.Count() > 0)
+                                {
+                        @item.Oi360Detalhes.FirstOrDefault().DataAgendamento}
+                            </td>
+                            <td>
+                                @if (item.Oi360Detalhes.Count() > 0)
+                                {
+                        @item.Oi360Detalhes.FirstOrDefault().HoraAgendamento}
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VendaMesAnterior)
+                            </td>
+                            <td>
+                                @if (item.Reinput == true)
+                                {
+                        <p>Reinput</p>}
+                            </td>
+
+
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.NumeroDoPedido" asp-route-data="@item.DataEmQueOPedidoFoiRealizado">Editar</a> |
+                                <a asp-action="Details" asp-route-id="@item.NumeroDoPedido">Detalhes</a>
+
+                                <!--<a asp-action="Delete" asp-route-id="@item.NumeroDoPedido">Deletar</a>-->
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <!-- page script -->
+                <script>function grid() {
+                        //$('#dtprincipal').DataTable();
+
+                        $('#dtprincipal').DataTable({
+                            dom: 'lBfrtip',
+                            buttons: [
+                                'copyHtml5',
+                                'excelHtml5',
+                                'csvHtml5',
+                                'pdfHtml5'
+                            ],
+                            "scrollX": true,
+                            "language": {
+                                "lengthMenu": "Mostrar _MENU_&nbsp; &nbsp; &nbsp;",
+                                "zeroRecords": "Nenhum registro",
+                                "info": "Página _PAGE_ de _PAGES_",
+                                "infoEmpty": "Nenhum registro",
+                                "infoFiltered": "(filtrado de _MAX_ total registros)",
+                                "search": "Procurar",
+                                "loadingRecords": "Carregando...",
+                                "processing": "Processando...",
+                                "paginate": {
+                                    "first": "Primeiro",
+                                    "last": "Último",
+                                    "next": "Próximo",
+                                    "previous": "Anterior"
+                                }
+
+                            }
+
+                        });
+                    }</script>
+            </div>
+    </body>

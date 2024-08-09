@@ -1,0 +1,95 @@
+@model IEnumerable<TingleVendas.Models.Oi360Detalhes>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ObservacaoAuditor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProtocoloOiVende)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocumentoVenda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckListDocumentoClienteOk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckListPropostaOk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckListConfirmacaoClienteOk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotaAtendimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroPedidoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusOiVendeNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupervisorNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VendedorNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ObservacaoAuditor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProtocoloOiVende)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentoVenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckListDocumentoClienteOk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckListPropostaOk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckListConfirmacaoClienteOk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NotaAtendimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroPedidoNavigation.NumeroDoPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusOiVendeNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupervisorNavigation.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendedorNavigation.Cpf)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

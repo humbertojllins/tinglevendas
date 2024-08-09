@@ -1,0 +1,164 @@
+@model IEnumerable<TingleVendas.Models.LogImportacao>
+
+@{
+    ViewData["Title"] = "Index";
+}
+   
+
+    <body onload="grid();">
+        <head>
+            <style type="text/css">
+
+
+
+
+                tr.group,
+                tr.group:hover {
+                    background-color: #ddd !important;
+                    font-weight: bold;
+                }
+            </style>
+            <h1>Index</h1>
+
+            <p>
+                <!--<a asp-action="Create">Create New</a>-->
+            </p>
+
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <!--<form asp-action="Index" asp-route-pAno="cboAno.Value" asp-route-pMes="cboMes.Value">-->
+                    <form asp-action="Index">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Selecione a planilha</label>
+                                    <select id="cboPlanilha" name="pPlanilha" class="form-control" asp-items="ViewBag.Planilha"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Selecione o mês</label>
+                                    <select id="cboOpcao" name="pChave1" class="form-control" asp-items="ViewBag.Chave1"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label style="visibility:hidden">Botão</label>
+                                    <input type="submit" id="GFG_Button" style="width:150px" value="Pesquisar" class="btn btn-primary btn-block">
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    <div class="row">
+                    </div>
+                </div>
+            </section>
+            <!--<select class="form-control" asp-items="ViewBag.Chave1"></select>-->
+            <table id="dtprincipal" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Planilha)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DataHora)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Chave1)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Chave2)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Chave3)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Linha)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Erro)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Planilha)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataHora)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Chave1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Chave2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Chave3)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Linha)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Erro)
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+
+            <!-- page script -->
+            <script>function grid() {
+                    //$('#dtprincipal').DataTable();
+                    var groupColumn = 0;
+                    $('#dtprincipal').DataTable(
+                        {
+                            "scrollX": true,
+                            dom: 'lBfrtip',
+                            "language": {
+                                "lengthMenu": "Mostrar _MENU_&nbsp; &nbsp; &nbsp;",
+                                "zeroRecords": "Nenhum registro",
+                                "info": "Página _PAGE_ de _PAGES_",
+                                "infoEmpty": "Nenhum registro",
+                                "infoFiltered": "(filtrado de _MAX_ total registros)",
+                                "search": "Procurar",
+                                "loadingRecords": "Carregando...",
+                                "processing": "Processando...",
+                                "paginate": {
+                                    "first": "Primeiro",
+                                    "last": "Último",
+                                    "next": "Próximo",
+                                    "previous": "Anterior"
+                                }
+
+                            },
+                            "columnDefs": [
+                                { "visible": false, "targets": groupColumn }
+                            ],
+                            "order": [[groupColumn, 'asc']],
+                            "displayLength": 25,
+                            "drawCallback": function (settings) {
+                                var api = this.api();
+                                var rows = api.rows({ page: 'current' }).nodes();
+                                var last = null;
+
+                                api.column(groupColumn, { page: 'current' }).data().each(function (group, i) {
+                                    if (last !== group) {
+                                        $(rows).eq(i).before(
+                                            '<tr class="group"><td colspan="6">' + group + '</td></tr>'
+                                        );
+
+                                        last = group;
+                                    }
+                                });
+                            }
+
+                        });
+                }</script>
+        </head>
+    </body>

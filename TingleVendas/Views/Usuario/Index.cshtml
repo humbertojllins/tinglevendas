@@ -1,0 +1,122 @@
+@model IEnumerable<TingleVendas.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<body onload="grid();">
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Novo Cadastro</a>
+</p>
+    
+<table id="dtprincipal" class="display nowrap" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sobrenome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Login)
+            </th>
+
+            <th>
+                Grupo
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sobrenome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Senha)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.IdGrupoNavigation.Descricao)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a> |
+                <a asp-action="EditSenha" asp-route-id="@item.Id">Alterar senha</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+
+
+</table>
+    
+     <!-- page script -->
+    <script>
+        
+        function grid() {
+            //$('#dtprincipal').DataTable();
+
+            $('#dtprincipal').DataTable({
+                dom: 'lBfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+                "scrollX": true,
+                "language": {
+                                "lengthMenu": "Mostrar _MENU_&nbsp; &nbsp; &nbsp;",
+                                "zeroRecords": "Nenhum registro",
+                                "info": "Página _PAGE_ de _PAGES_",
+                                "infoEmpty": "Nenhum registro",
+                                "infoFiltered": "(filtrado de _MAX_ total registros)",
+                                "search": "Procurar",
+                                "loadingRecords": "Carregando...",
+                                "processing":     "Processando...",
+                                "paginate": {
+                                    "first":      "Primeiro",
+                                    "last":       "Último",
+                                    "next":       "Próximo",
+                                    "previous":   "Anterior"
+                                }
+
+                            }
+                 
+            });
+        }
+            
+    </script>
+    
+    </body>

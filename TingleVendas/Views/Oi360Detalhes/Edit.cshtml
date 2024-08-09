@@ -1,0 +1,200 @@
+@model TingleVendas.Models.Oi360Detalhes
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Oi360Detalhes</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" asp-route-pano="@ViewData["anoCorrente"]" asp-route-pmes="@ViewData["mesCorrente"]">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <select asp-for="NumeroPedido" class="form-control" asp-items="ViewBag.NumeroPedido" style="visibility:hidden"></select>
+                <label asp-for="NumeroPedido" class="control-label">Número do pedido</label>
+                <label asp-for="NumeroPedido" class="control-label">@ViewBag.NumeroPedido.SelectedValue</label>
+                <span asp-validation-for="NumeroPedido" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Supervisor" class="control-label">Supervisor</label>
+                <select asp-for="Supervisor" class="form-control" asp-items="ViewBag.Supervisor"></select>
+                <span asp-validation-for="Supervisor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vendedor" class="control-label">Vendedor</label>
+                <select asp-for="Vendedor" class="form-control" asp-items="ViewBag.Vendedor"></select>
+                <span asp-validation-for="Vendedor" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="StatusOiVende" class="control-label">Status - Sistema Oi Vende</label>
+                <select asp-for="StatusOiVende" class="form-control" asp-items="ViewBag.StatusOiVende"></select>
+                <span asp-validation-for="StatusOiVende" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProtocoloOiVende" class="control-label">Protocolo - Sistema Oi Vende</label>
+                <input asp-for="ProtocoloOiVende" class="form-control" />
+                <span asp-validation-for="ProtocoloOiVende" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataAgendamento" class="control-label">Data Agendamento</label>
+                <input asp-for="DataAgendamento" class="form-control" type="text" data-mask="00/00/0000" />
+                <span asp-validation-for="DataAgendamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoraAgendamento" class="control-label">Hora Agendamento</label>
+                <input asp-for="HoraAgendamento" class="form-control" data-mask="00:00" />
+                <span asp-validation-for="HoraAgendamento" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DocumentoVenda" class="control-label">Documento da venda</label>
+                <table>
+                    <tr>
+                        <td>
+                            <input id="files" name="files" type="file" />
+                        </td>
+                        <td>
+                            <!--<button type="button" class="btn btn-info" onclick="uploadFiles('files');">Subir arquivo</button>-->
+                            <!--<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" onclick="uploadFiles('files');"></i>-->
+                            <img src="~/upload.png" id="imgUpload" title="Enviar documento para nuvem" style="width:30px; height:30px;cursor: pointer;" onclick="uploadFiles('files');" onmouseover="">
+                        </td>
+                    </tr>
+                </table>
+                <div class="progress">
+                    <div id="progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        <div id="label" class="control-label">0%</div>
+                    </div>
+                </div>
+                <input id="DocumentoVenda" asp-for="DocumentoVenda" readonly class="form-control" />
+                <span asp-validation-for="DocumentoVenda" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckListDocumentoClienteOk" class="control-label">Documentos do cliente OK?</label>
+                <input type="checkbox" id="CheckListDocumentoClienteOk" name="CheckListDocumentoClienteOk" value="true" @(Model.CheckListDocumentoClienteOk ? "checked=\"checked\"" : "") />
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckListPropostaOk" class="control-label">Proposta OK?</label>
+                <input type="checkbox" id="CheckListPropostaOk" name="CheckListPropostaOk" value="true" @(Model.CheckListPropostaOk ? "checked=\"checked\"" : "") />
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckListConfirmacaoClienteOk" class="control-label">Confirmação do cliente?</label>
+                <input type="checkbox" id="CheckListConfirmacaoClienteOk" name="CheckListConfirmacaoClienteOk" value="true" @(Model.CheckListConfirmacaoClienteOk ? "checked=\"checked\"" : "") />
+            </div>
+            <div class="form-group">
+                <label asp-for="NotaAtendimento" class="control-label">Avaliação do atendimento(0 a 10)</label>
+                <input asp-for="NotaAtendimento" class="form-control" type="number" />
+                <!--min="0" max="10" step="1"-->
+                <span asp-validation-for="NotaAtendimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ObservacaoAuditor" class="control-label">Observação do auditor</label>
+                <!--<input asp-for="ObservacaoAuditor" class="form-control" />-->
+                <textarea asp-for="ObservacaoAuditor" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="ObservacaoAuditor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ObservacaoPendencia" class="control-label">Observação Pendência</label>
+                <!--<input asp-for="ObservacaoAuditor" class="form-control" />-->
+                <textarea asp-for="ObservacaoPendencia" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="ObservacaoPendencia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <!--<a asp-action="Details">Back to List</a>-->
+    <a asp-action="Details" asp-route-id="@ViewBag.NumeroPedido.SelectedValue" asp-route-ano="@ViewData["anoCorrente"]" asp-route-mes="@ViewData["mesCorrente"]">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript" charset="utf-8">
+
+    var isUpload = true;
+    function uploadFiles(inputId) {
+        isUpload = false;
+        var input = document.getElementById(inputId);
+        var files = input.files;
+        if (input.files.length > 0) {
+            var formData = new FormData();
+            for (var i = 0; i != files.length; i++) {
+                formData.append("files", files[i]);
+                formData.append("arquivo", "docvenda");
+            }
+            startUpdatingProgressIndicator();
+            $.ajax(
+                {
+                    //url: "/UpFile/Index",
+                    url: '@Url.Action("Index", "UpFile")',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    type: "POST",
+                    error: function (result) {
+                        alert("Ops, algo deu errado, tente novamente!" + " </br> " + result.message);
+                        input.value = '';
+                    },
+                    success: function (data) {
+                        //alert(data.status);
+                        if (data.status == 'true') {
+                            var txtDoc = document.getElementById("DocumentoVenda");
+                            if (txtDoc != null) {
+                                txtDoc.value = data['message'];
+                                alert("Importação concluída!");
+                            }
+                        } else {
+                            alert("Erro ao importar documento! Erro:" + data.message);
+                        }
+                        //if (data['message'] === "Importação concluída!") {
+                        //    alert("Importação concluída!");
+                        //    stopUpdatingProgressIndicator();
+                        //    input.value = '';
+                        //    //location.reload();
+                        //}
+                        //else {
+                        //    alert(data['message']);
+                        //    stopUpdatingProgressIndicator();
+                        //    input.value = '';
+                        //}
+
+                        isUpload = true;
+
+                    }
+                }
+            );
+        } else {
+            alert('Selecione um arquivo para importar!');
+        }
+    }
+    var intervalId;
+    function startUpdatingProgressIndicator() {
+        $("#progress").show();
+        intervalId = setInterval(
+            function () {
+                // We use the POST requests here to avoid caching problems (we could use the GET requests and disable the cache instead)
+                $.post(
+                    "/UpFile/Progress",
+                    function (progress) {
+                        $("#progress").css({ width: progress + "%" });
+                        $("#label").html(progress + "%");
+                    }
+                );
+            },
+            10
+        );
+    }
+    function stopUpdatingProgressIndicator() {
+        clearInterval(intervalId);
+    }
+
+
+</script>

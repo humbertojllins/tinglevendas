@@ -1,0 +1,534 @@
+@model TingleVendas.Models.Oi360
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Oi360</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.DataEmQueOPedidoFoiRealizado)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.DataEmQueOPedidoFoiRealizado)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.HoraEmQueOPedidoFoiRealizado)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.HoraEmQueOPedidoFoiRealizado)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.DataEmQueOPedidoFoiTratado)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.DataEmQueOPedidoFoiTratado)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.HoraEmQueOPedidoFoiTratado)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.HoraEmQueOPedidoFoiTratado)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.NomeCliente)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.NomeCliente)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Genero)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Genero)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.DataDeNascimento)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.DataDeNascimento)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Cpf)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Rg)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Rg)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.RgOExpedidor)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.RgOExpedidor)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.RgDataExpedicao)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.RgDataExpedicao)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.NomeCompletoDaMae)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.NomeCompletoDaMae)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Nacionalidade)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Nacionalidade)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.ContatoPrincipal)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.ContatoPrincipal)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.ContatoPrincipalWhatsapp)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.ContatoPrincipalWhatsapp)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.ContatoSecundario)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.ContatoSecundario)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.ContatoSecundarioWhatsapp)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.ContatoSecundarioWhatsapp)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Contato1Nome)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Contato1Nome)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Contato1Numero)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Contato1Numero)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Contato2Nome)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Contato2Nome)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Contato2Numero)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Contato2Numero)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Contato3Nome)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Contato3Nome)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Contato3Numero)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Contato3Numero)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.EMail)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.EMail)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.MatriculaVendedor)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.MatriculaVendedor)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.NomeVendedor)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.NomeVendedor)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.FixoOi)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.FixoOi)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.FixoPortabilidade)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.FixoPortabilidade)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.FixoOperadora)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.FixoOperadora)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.FixoNumero)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.FixoNumero)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.BandaLargaTecnologia)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.BandaLargaTecnologia)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.BandaLargaVelocidade)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.BandaLargaVelocidade)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.BandaLargaDataAgendamento)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.BandaLargaDataAgendamento)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.PeriodoAgendamentoFixoBandaLarga)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.PeriodoAgendamentoFixoBandaLarga)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.OsBandaLargaFixo)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.OsBandaLargaFixo)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.TvPlanoTv)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.TvPlanoTv)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.TvPontosAdicionais)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.TvPontosAdicionais)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.TvCanaisALaCarte)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.TvCanaisALaCarte)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.TvOs)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.TvOs)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.TvDataAgendamento)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.TvDataAgendamento)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.TvPeriodoAgendamento)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.TvPeriodoAgendamento)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.TvIdBundle)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.TvIdBundle)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.ComboContratado)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.ComboContratado)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.PagamentoFormaDePagamento)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.PagamentoFormaDePagamento)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.PagamentoVencimento)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.PagamentoVencimento)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.PagamentoContaOnline)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.PagamentoContaOnline)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.PagamentoBanco)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.PagamentoBanco)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.PagamentoAgencia)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.PagamentoAgencia)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.PagamentoConta)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.PagamentoConta)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.PagamentoDigito)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.PagamentoDigito)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.StatusPrimario)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.StatusPrimario)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.StatusSecundario)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.StatusSecundario)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.ObservacaoVendedor)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.ObservacaoVendedor)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.ObservacaoOperador)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.ObservacaoOperador)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Operador)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Operador)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.DataInicioTratamentoPedido)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.DataInicioTratamentoPedido)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.HoraInicioTratamentoPedido)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.HoraInicioTratamentoPedido)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.DataTerminoTratamentoPedido)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.DataTerminoTratamentoPedido)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.HoraTerminoTratamentoPedido)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.HoraTerminoTratamentoPedido)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoCep)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoCep)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoLogradouro)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoLogradouro)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoNumero)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoNumero)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoBairro)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoBairro)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoCidade)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoCidade)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoEstado)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoEstado)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoReferencia)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoReferencia)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoCdoeCdoi)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoCdoeCdoi)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoComplemento1Tipo)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoComplemento1Tipo)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoComplemento1)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoComplemento1)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoComplemento2Tipo)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoComplemento2Tipo)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoComplemento2)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoComplemento2)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoComplemento3Tipo)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoComplemento3Tipo)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.InstalacaoComplemento3)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.InstalacaoComplemento3)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CobrancaCep)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CobrancaCep)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CobrancaLogradouro)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CobrancaLogradouro)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CobrancaNumero)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CobrancaNumero)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CobrancaBairro)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CobrancaBairro)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CobrancaCidade)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CobrancaCidade)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CobrancaEstado)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CobrancaEstado)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CobrancaComplemento1Tipo)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CobrancaComplemento1Tipo)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CobrancaComplemento1)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CobrancaComplemento1)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CobrancaComplemento2Tipo)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CobrancaComplemento2Tipo)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CobrancaComplemento2)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CobrancaComplemento2)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CobrancaComplemento3Tipo)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CobrancaComplemento3Tipo)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.CobrancaComplemento3)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CobrancaComplemento3)
+        </dd>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.VendaMesAnterior)
+        </dd>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Reinput)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.NumeroDoPedido">Editar</a> |
+    <a asp-action="Index" asp-route-pAno="@Convert.ToDateTime(@Model.DataEmQueOPedidoFoiRealizado).Year" asp-route-pMes="@Convert.ToDateTime(@Model.DataEmQueOPedidoFoiRealizado).Month" >Voltar</a>
+</div>

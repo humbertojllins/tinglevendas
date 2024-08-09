@@ -1,0 +1,63 @@
+@model TingleVendas.Models.LogImportacao
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>LogImportacao</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Planilha" class="control-label"></label>
+                <input asp-for="Planilha" class="form-control" />
+                <span asp-validation-for="Planilha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataHora" class="control-label"></label>
+                <input asp-for="DataHora" class="form-control" />
+                <span asp-validation-for="DataHora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Chave1" class="control-label"></label>
+                <input asp-for="Chave1" class="form-control" />
+                <span asp-validation-for="Chave1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Chave2" class="control-label"></label>
+                <input asp-for="Chave2" class="form-control" />
+                <span asp-validation-for="Chave2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Chave3" class="control-label"></label>
+                <input asp-for="Chave3" class="form-control" />
+                <span asp-validation-for="Chave3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Linha" class="control-label"></label>
+                <input asp-for="Linha" class="form-control" />
+                <span asp-validation-for="Linha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Erro" class="control-label"></label>
+                <input asp-for="Erro" class="form-control" />
+                <span asp-validation-for="Erro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,267 @@
+﻿
+@{
+    ViewData["Title"] = "Importação de planilhas";
+}
+
+    <h1>
+        @if (Convert.ToBoolean(ViewData["oi360"]) == true)
+        {
+            <strong>OI360</strong>
+        }
+        @if (Convert.ToBoolean(ViewData["bov"]) == true)
+        {
+            <strong>BOV INSTALAÇÃO</strong>
+        }
+        @if (Convert.ToBoolean(ViewData["bovcanc"]) == true)
+        {
+            <strong>BOV CANCELAMENTOS</strong>
+        }
+        @if (Convert.ToBoolean(ViewData["click"]) == true)
+        {
+            <strong>CLICK ABERTAS</strong>
+        }
+        @if (Convert.ToBoolean(ViewData["clickfechadas"]) == true)
+        {
+            <strong>CLICK FECHADAS</strong>
+        }
+
+    </h1>
+<h4>IMPORTAR DADOS</h4>
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <!--<form id="form" name="form" enctype="multipart/form-data" method="post">-->
+        <form id="form" name="form" method="post" enctype="multipart/form-data" asp-controller="FileUpload" asp-action="Index">
+            <!--<form>-->
+            <div class="form-group">
+                <div class="col-md-10">
+                    <!--<input type="file" name="files" multiple />-->
+                    <input id="files" name="files" type="file" />
+                    <!--<input id="files" name="files" type="file" size="1" multiple onchange="uploadFiles('files');" />-->
+                    <div style="visibility:hidden">
+                        <input type="radio" id="arquivo1" disabled name="arquivo" value="oi360" checked=@ViewData["oi360"]>
+                        <label for="arquivo1">Oi 360</label>
+                        <input type="radio" id="arquivo2" disabled name="arquivo" value="bov" checked=@ViewData["bov"]>
+                        <label for="arquivo2">BOV - Instalação</label>
+                        <input type="radio" id="arquivo3" disabled name="arquivo" value="bovcanc" checked=@ViewData["bovcanc"]>
+                        <label for="arquivo3">BOV - Cancelamento</label>
+                        <input type="radio" id="arquivo4" disabled name="arquivo" value="click" checked=@ViewData["click"] />
+                        <label for="arquivo4">Click</label>
+                        <input type="radio" id="arquivo5" disabled name="arquivo" value="clickfechadas" checked=@ViewData["clickfechadas"] />
+                        <label for="arquivo5">Click fechadas</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+
+                    <!--<button id="btnEnviar" type="button" class="btn btn-info" onclick="uploadFiles('files');">Upload</button>-->
+
+                    <input type="button" id="GFG_Button" value="Enviar arquivo" class="btn btn-primary btn-block" onclick="uploadFiles('files');">
+
+                    <button style="visibility:hidden" type="button" id="btnModal" class="btn btn-default" data-toggle="modal" data-target="#modal-default"> 
+                    </button>
+
+                    <!--<button type="button" class="btn btn-default toastsDefaultDefault">
+                        Launch Default Toast
+                    </button>
+
+                    <button id="btnSucesso" type="button" class="btn btn-success toastsDefaultSuccess">
+                        Sucesso
+                    </button>-->
+                </div>
+            </div>
+
+            <div class="progress">
+                <div id="progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    <div id="label" class="control-label">0%</div>
+                </div>
+            </div>
+            <!--MODAL POPUP-->
+            <div class="modal fade" id="modal-default">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Informação</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Dados importados com sucesso!
+                            </p>
+                            </br>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <a asp-action="LogImp">Log de importação</a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:location.reload();" >Close</button>
+                            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <!--<a asp-action="Index">Voltar</a>-->
+</div>
+
+
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2
+<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>-->
+<!-- Toastr
+<script src="../../plugins/toastr/toastr.min.js"></script>-->
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script type="text/javascript" charset="utf-8">
+
+    $(function () {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        $('.toastsDefaultDefault').click(function () {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultSuccess').click(function () {
+            $(document).Toasts('create', {
+                class: 'bg-success',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+
+    })
+
+    var isUpload = true;
+    function uploadFiles(inputId) {
+        isUpload = false;
+        $("#GFG_Button").prop("value", 'Aguarde...');
+        $("#GFG_Button").prop("disabled", true);
+        var input = document.getElementById(inputId);
+        
+        var files = input.files;
+        //alert(files.length);
+        if (files.length > 0) {
+            var formData = new FormData();
+            for (var i = 0; i != files.length; i++) {
+                formData.append("files", files[i]);
+                formData.append("arquivo", $("input[name='arquivo']:checked").val());
+            }
+            startUpdatingProgressIndicator();
+            $.ajax(
+                {
+                    //url: "/UpFile/Index",
+                    url: '@Url.Action("Index", "UpFile")',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    type: "POST",
+                    //error: function (result) {
+                    error: function (jqXHR, exception) {
+                        //alert("Ops, algo deu errado, tente novamente!" + " </br> " + result);
+                        //alert(jqXHR.status);
+                        var msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Requested page not found. [404]';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Internal Server Error [500].';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                        }
+                        alert(msg);
+                        input.value = '';
+                    },
+                    success: function (data) {
+                        if (data['message'] === "Importação concluída!") {
+                            //alert("Importação concluída!");
+
+                            stopUpdatingProgressIndicator();
+                            input.value = '';
+
+                            //$("#btnSucesso").click();
+
+                            $("#btnModal").click();
+                            //location.reload();
+                        }
+                        else {
+                            alert(data['message']);
+                            // location.reload();
+                            stopUpdatingProgressIndicator();
+                            input.value = '';
+                            $("#GFG_Button").prop("value", 'Enviar arquivo');
+                            $("#GFG_Button").prop("disabled", false);
+                        }
+                        isUpload = true;
+                    }
+                }
+            );
+        } else {
+            alert('Selecione um arquivo para importar!');
+            $("#GFG_Button").prop("value", 'Enviar arquivo');
+            $("#GFG_Button").prop("disabled", false);
+        }
+    }
+    var intervalId;
+    function startUpdatingProgressIndicator() {
+        $("#progress").show();
+        intervalId = setInterval(
+            function () {
+                // We use the POST requests here to avoid caching problems (we could use the GET requests and disable the cache instead)
+                $.post(
+                    "/UpFile/Progress",
+                    function (progress) {
+                        $("#progress").css({ width: progress + "%" });
+                        $("#label").html(progress + "%");
+                    }
+                );
+            },
+            10
+        );
+    }
+    function stopUpdatingProgressIndicator() {
+        clearInterval(intervalId);
+    }
+
+
+    $(document).ready(function () {
+        $("#GFG_Button").click(function () {
+            // disable button
+
+            $(this).prop("disabled", true);
+            // add spinner to button
+
+            $(this).html(
+                '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
+
+            );
+        });
+    });
+
+</script>

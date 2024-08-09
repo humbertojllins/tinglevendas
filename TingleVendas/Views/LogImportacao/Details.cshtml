@@ -1,0 +1,60 @@
+@model TingleVendas.Models.LogImportacao
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>LogImportacao</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Planilha)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Planilha)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataHora)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataHora)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Chave1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Chave1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Chave2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Chave2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Chave3)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Chave3)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Linha)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Linha)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Erro)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Erro)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

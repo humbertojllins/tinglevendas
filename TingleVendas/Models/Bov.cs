@@ -1,0 +1,104 @@
+﻿//using System;
+//using System.Collections.Generic;
+
+//namespace TingleVendas.Models
+//{
+//    public partial class Bov
+//    {
+//        public int Id { get; set; }
+//        public int? CodigoSapPdv { get; set; }
+//        public string GrupoUnidade { get; set; }
+//        public string NumeroPedido { get; set; }
+//        public string Produto { get; set; }
+//        public string Tipo { get; set; }
+//        public DateTime? DataPedido { get; set; }
+//        public string BovStatus { get; set; }
+//        public DateTime? DataStatus { get; set; }
+//        public string MotivoRetirada { get; set; }
+//        public string NumIdentidade { get; set; }
+//        public string NomeCliente { get; set; }
+//        public string SegmentoMercado { get; set; }
+//        public string TelefoneContato { get; set; }
+//        public string MetodoPagamento { get; set; }
+//        public int? DiaVencimentoFatura { get; set; }
+//        public DateTime? DataCorte { get; set; }
+//        public string TipoLogradouroInstalacao { get; set; }
+//        public string NomeLogradouroInstalacao { get; set; }
+//        public string NumeroInstalacao { get; set; }
+//        public string TipoCompInstalacao { get; set; }
+//        public string NumComp1Instalacao { get; set; }
+//        public string NumComp2Instalacao { get; set; }
+//        public string NumComp3Instalacao { get; set; }
+//        public string BairroInstalacao { get; set; }
+//        public string MunicipioInstalacao { get; set; }
+//        public string EstadoInstalacao { get; set; }
+//        public string CepInstalacao { get; set; }
+//        public int? NumLocalidade { get; set; }
+//        public string CodigoEstacao { get; set; }
+//        public string IdUnicoAcesso { get; set; }
+//        public string IdAcessoAssociado { get; set; }
+//        public string NumeroContrato { get; set; }
+//        public string AcessoGpon { get; set; }
+//        public int? DddFixo { get; set; }
+//        public int? NumeroFixo { get; set; }
+//        public string ClassePlano { get; set; }
+//        public string Velocidade { get; set; }
+//        public string QtdPontosAdicionaisTv { get; set; }
+//        public string Tecnologia { get; set; }
+//        public string LinhaProduto { get; set; }
+//        public string Plano { get; set; }
+//        public string PlanoAnterior { get; set; }
+//        public string NomeCampanha { get; set; }
+//        public string NomeOferta { get; set; }
+//        public string NomeCampanhaAnterior { get; set; }
+//        public string NomeOfertaAnterior { get; set; }
+//        public string NomeCampanhaOriginal { get; set; }
+//        public string NomeOfertaOriginal { get; set; }
+//        public string CodigoSap { get; set; }
+//        public string PontoVenda { get; set; }
+//        public string TipoCanal { get; set; }
+//        public string LoginVendedor { get; set; }
+//        public string PedidoCriadoPor { get; set; }
+//        public string AdicaoPonto { get; set; }
+//        public string NumeroAtivoPedido { get; set; }
+//        public string NumeroDocumento { get; set; }
+//        public string TipoPedido { get; set; }
+//        public int? ClasseProduto { get; set; }
+//        public string QtdTotalPontos { get; set; }
+//        public string InteressePortabilidade { get; set; }
+//        public string TipoPromocao { get; set; }
+//        public int? IdBundle { get; set; }
+//        public DateTime? DtAbertura { get; set; }
+//        public DateTime? CriadoEm { get; set; }
+//        public DateTime? ModificadoEm { get; set; }
+//        public string IndCombo { get; set; }
+//        public string PlanoBundle { get; set; }
+//        public string TipoPosseCombo { get; set; }
+//        public string CdCampMovelTit { get; set; }
+//        public string CampMovelTit { get; set; }
+//        public string CdOftMovelTit { get; set; }
+//        public string SitBundle { get; set; }
+//        public string TipoRede { get; set; }
+//        public int? DescricaoCanalBov { get; set; }
+//        public string DtFechamento { get; set; }
+//        public string Evento { get; set; }
+//        public string BundleTipoEventoVenda { get; set; }
+//        public string BundleSitFixo { get; set; }
+//        public string BundleSitVlx { get; set; }
+//        public string BundleSitTv { get; set; }
+//        public string BundleSitMovelTit { get; set; }
+//        public string FlgVendaValida { get; set; }
+//        public string BundleProdutoNovo { get; set; }
+//        public string UnidadeNegocio { get; set; }
+//        public int? TpRetirada { get; set; }
+//        public string BundleMaMovelTit { get; set; }
+//        public string BundleNumeroDocumento { get; set; }
+//        public string BundleContratoTv { get; set; }
+//        public string BundleNumeroDocumentoTv { get; set; }
+//        public string FlgMigCobreFixo { get; set; }
+//        public string FlgMigCobreVelox { get; set; }
+//        public string FlgMigTv { get; set; }
+//        public string LoginOit { get; set; }
+//        public string MotivoSituacaoPedido { get; set; }
+//    }
+//}

@@ -1,0 +1,85 @@
+@model IEnumerable<TingleVendas.Models.Municipio>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<body onload="grid();">
+
+    <h1>Index</h1>
+
+    <p>
+        @*<a asp-action="Create">Create New</a>*@
+    </p>
+    <table id="dtprincipal" class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Município
+                    @*@Html.DisplayNameFor(model => model.Municipio1)*@
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ativo)
+                </th>
+                <th>
+                    UF
+                    @*@Html.DisplayNameFor(model => model.UfNavigation)*@
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Municipio1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ativo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UfNavigation.Sigla)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.IdMunicipio">Editar</a> |
+            <a asp-action="Details" asp-route-id="@item.IdMunicipio">Detalhes</a>
+            @*<a asp-action="Delete" asp-route-id="@item.IdMunicipio">Delete</a>*@
+        </td>
+    </tr>}
+        </tbody>
+    </table>
+    <!-- page script -->
+    <script>function grid() {
+            //$('#dtprincipal').DataTable();
+
+    $('#dtprincipal').DataTable({
+                dom: 'lBfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+                "order": [[1, "desc"]],
+                "scrollX": true,
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_&nbsp; &nbsp; &nbsp;",
+                    "zeroRecords": "Nenhum registro",
+                    "info": "Página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Nenhum registro",
+                    "infoFiltered": "(filtrado de _MAX_ total registros)",
+                    "search": "Procurar",
+                    "loadingRecords": "Carregando...",
+                    "processing": "Processando...",
+                    "paginate": {
+                        "first": "Primeiro",
+                        "last": "Último",
+                        "next": "Próximo",
+                        "previous": "Anterior"
+                    }
+
+                }
+
+            });
+        }</script>
+</body>

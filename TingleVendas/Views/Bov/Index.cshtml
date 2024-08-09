@@ -1,0 +1,587 @@
+@model IEnumerable<TingleVendas.Models.Bov>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoSapPdv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GrupoUnidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BovStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MotivoRetirada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumIdentidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SegmentoMercado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelefoneContato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MetodoPagamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaVencimentoFatura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCorte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoLogradouroInstalacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeLogradouroInstalacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroInstalacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoCompInstalacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumComp1Instalacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumComp2Instalacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumComp3Instalacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BairroInstalacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MunicipioInstalacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoInstalacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CepInstalacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumLocalidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoEstacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUnicoAcesso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAcessoAssociado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroContrato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcessoGpon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DddFixo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroFixo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassePlano)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Velocidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtdPontosAdicionaisTv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tecnologia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LinhaProduto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plano)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanoAnterior)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCampanha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeOferta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCampanhaAnterior)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeOfertaAnterior)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCampanhaOriginal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeOfertaOriginal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoSap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PontoVenda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoCanal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoginVendedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PedidoCriadoPor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdicaoPonto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroAtivoPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClasseProduto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtdTotalPontos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InteressePortabilidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoPromocao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdBundle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DtAbertura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CriadoEm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModificadoEm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IndCombo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanoBundle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoPosseCombo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CdCampMovelTit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CampMovelTit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CdOftMovelTit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SitBundle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoRede)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescricaoCanalBov)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DtFechamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Evento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BundleTipoEventoVenda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BundleSitFixo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BundleSitVlx)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BundleSitTv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BundleSitMovelTit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlgVendaValida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BundleProdutoNovo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadeNegocio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TpRetirada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BundleMaMovelTit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BundleNumeroDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BundleContratoTv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BundleNumeroDocumentoTv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlgMigCobreFixo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlgMigCobreVelox)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlgMigTv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoginOit)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoSapPdv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrupoUnidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BovStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MotivoRetirada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumIdentidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SegmentoMercado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefoneContato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MetodoPagamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaVencimentoFatura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCorte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoLogradouroInstalacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeLogradouroInstalacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroInstalacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoCompInstalacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumComp1Instalacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumComp2Instalacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumComp3Instalacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BairroInstalacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MunicipioInstalacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoInstalacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CepInstalacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumLocalidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoEstacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUnicoAcesso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAcessoAssociado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroContrato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AcessoGpon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DddFixo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroFixo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClassePlano)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Velocidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QtdPontosAdicionaisTv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tecnologia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LinhaProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plano)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanoAnterior)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCampanha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeOferta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCampanhaAnterior)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeOfertaAnterior)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCampanhaOriginal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeOfertaOriginal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoSap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PontoVenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoCanal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoginVendedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PedidoCriadoPor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdicaoPonto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroAtivoPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroDocumento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClasseProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QtdTotalPontos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InteressePortabilidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoPromocao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdBundle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DtAbertura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CriadoEm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModificadoEm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndCombo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanoBundle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoPosseCombo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CdCampMovelTit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampMovelTit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CdOftMovelTit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SitBundle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoRede)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescricaoCanalBov)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DtFechamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Evento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BundleTipoEventoVenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BundleSitFixo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BundleSitVlx)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BundleSitTv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BundleSitMovelTit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlgVendaValida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BundleProdutoNovo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnidadeNegocio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TpRetirada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BundleMaMovelTit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BundleNumeroDocumento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BundleContratoTv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BundleNumeroDocumentoTv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlgMigCobreFixo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlgMigCobreVelox)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlgMigTv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoginOit)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

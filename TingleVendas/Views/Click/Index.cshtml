@@ -1,0 +1,188 @@
+@model IEnumerable<TingleVendas.Models.Click>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<body onload="grid();">
+    <table id="dtprincipal" class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeCliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CpfCliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Matriculatecnico)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tecnico)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Atividade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GrupoUnidade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Inicioagendamento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fimagendamento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Filial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ddd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FilialIi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gv)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GrupoCanal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CodSap)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomePdv)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contato1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contato2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contato3)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    <!--<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    < a asp - action = "Delete" asp - route - id = "@item.Id" > Delete </ a >-->
+                    <a asp-action="Details" asp-route-id="@item.Id" asp-route-pNomeCliente="@item.NomeCliente">Mais detalhes</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CpfCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Matriculatecnico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tecnico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Atividade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrupoUnidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Inicioagendamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fimagendamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Filial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ddd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FilialIi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrupoCanal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodSap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomePdv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contato1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contato2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contato3)
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <script>
+        function grid() {
+            $('#dtprincipal').DataTable({
+                "scrollX": true,
+                dom: 'lBfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_&nbsp; &nbsp; &nbsp;",
+                    "zeroRecords": "Nenhum registro",
+                    "info": "Página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Nenhum registro",
+                    "infoFiltered": "(filtrado de _MAX_ total registros)",
+                    "search": "Procurar",
+                    "loadingRecords": "Carregando...",
+                    "processing": "Processando...",
+                    "paginate": {
+                        "first": "Primeiro",
+                        "last": "Último",
+                        "next": "Próximo",
+                        "previous": "Anterior"
+                    }
+                }
+
+
+            });
+        }
+
+        function searchAdv(busca) {
+
+            var table = $('#dtprincipal').DataTable();
+            table.search(busca).draw();
+
+        }</script>
+</body>

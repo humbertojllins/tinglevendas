@@ -1,0 +1,58 @@
+@model TingleVendas.Models.Oi360Transferencia
+
+@{
+    ViewData["Title"] = "Transferir para perdas";
+}
+
+<h1>Transferir para perdas</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-route-pano="@ViewData["ano"]" asp-route-pmes="@ViewData["mes"]">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select asp-for="NumeroPedido" class="form-control" asp-items="ViewBag.NumeroPedido" style="visibility:hidden"></select>
+                <label asp-for="NumeroPedido" class="control-label">Número do pedido</label>
+                <!--<select asp-for="NumeroPedido" class="form-control" asp-items="ViewBag.NumeroPedido" readonly></select>-->
+                <label asp-for="NumeroPedido" class="control-label">@ViewBag.NumeroPedido.SelectedValue</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" value="Perdas" readonly />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observacao" class="control-label"></label>
+                <textarea asp-for="Observacao" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="Observacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UsuarioNome" class="control-label">Transferido por</label>
+                <input asp-for="UsuarioNome" class="form-control" value="@ViewData["nome"]" readonly />
+                <span asp-validation-for="UsuarioNome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataMovimento" class="control-label">Tranferido em</label>
+                <input asp-for="DataMovimento" class="form-control" value="@ViewData["dataAtual"]" data-mask="00/00/0000 00:00" readonly />
+                <span asp-validation-for="DataMovimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Movimento" class="control-label"></label>
+                <input asp-for="Movimento" class="form-control" value="@ViewData["movimento"]" readonly />
+                <span asp-validation-for="Movimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-pAno="@ViewData["ano"]" asp-route-pMes="@ViewData["mes"]">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,418 @@
+﻿@model IEnumerable<TingleVendas.Models.RelatorioVendasResumo>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!--<div class="text-center">
+    <h1 class="display-4">Olá</h1>
+    <p>Bem-vindo ao sistema de gestão de vendas da MDV</p>
+
+</div>-->
+<style>
+    .bd-example-modal-lg .modal-dialog {
+        display: table;
+        position: relative;
+        margin: 0 auto;
+        top: calc(50% - 24px);
+    }
+
+        .bd-example-modal-lg .modal-dialog .modal-content {
+            background-color: transparent;
+            border: none;
+        }
+</style>
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <!--<form asp-action="Index" asp-route-pAno="cboAno.Value" asp-route-pMes="cboMes.Value">-->
+        <form asp-action="Index">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Selecione o ano</label>
+                        <input type="number" id="cboAno" name="pAno" class="form-control" style="width:200px" value="@ViewData["anoCorrente"]" min="2020" step="1">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+
+                        <label style="visibility:hidden">Botão</label>
+                        <input type="button" id="GFG_Button" style="width:150px" value="Pesquisar" onclick="LoadData();" class="btn btn-primary btn-block">
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <div class="row">
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+
+        <div class="row">
+            <section class="col-lg-6 connectedSortable">
+                <!-- Custom tabs (Charts with tabs)-->
+                <!--GRÁFICO CONCLUIDAS-->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-bar mr-1"></i>
+                            Vendas concluídas
+                        </h3>
+                        <!--<div class="card-tools">
+                            <ul class="nav nav-pills ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                                </li>
+                            </ul>
+                        </div>-->
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content p-0">
+                            <!-- Morris chart - Sales -->
+                            <div id="chart_div" class="chart tab-pane active"
+                                 style="position: relative; height: 300px;">
+                            </div>
+                        </div>
+                    </div><!-- /.card-body -->
+                </div>
+                <!--GRÁFICO CANCELANDAS-->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-bar mr-1"></i>
+                            Vendas canceladas
+                        </h3>
+                        <!--<div class="card-tools">
+                            <ul class="nav nav-pills ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                                </li>
+                            </ul>
+                        </div>-->
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content p-0">
+                            <!-- Morris chart - Sales -->
+                            <div id="chart_div_canc" class="chart tab-pane active"
+                                 style="position: relative; height: 300px;">
+                                <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                            </div>
+                        </div>
+                    </div><!-- /.card-body -->
+                </div>
+            </section>
+            <section class="col-lg-6 connectedSortable">
+                <!-- Custom tabs (Charts with tabs)-->
+                <!--GRÁFICO PENDENTES-->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-bar mr-1"></i>
+                            Vendas pendentes
+                        </h3>
+                        <!--<div class="card-tools">
+                            <ul class="nav nav-pills ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                                </li>
+                            </ul>
+                        </div>-->
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content p-0">
+                            <!-- Morris chart - Sales -->
+                            <div id="chart_div_pend" class="chart tab-pane active"
+                                 style="position: relative; height: 300px;">
+                                <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                            </div>
+                        </div>
+                    </div><!-- /.card-body -->
+                </div>
+                <!--GRÁFICO ERRO-->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-bar mr-1"></i>
+                            Vendas com erro
+                        </h3>
+                        <!--<div class="card-tools">
+                            <ul class="nav nav-pills ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                                </li>
+                            </ul>
+                        </div>-->
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content p-0">
+                            <!-- Morris chart - Sales -->
+                            <div id="chart_div_erro" class="chart tab-pane active"
+                                 style="position: relative; height: 300px;">
+                                <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                            </div>
+                        </div>
+                    </div><!-- /.card-body -->
+                </div>
+            </section>
+
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+    <div class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" style="width: 45px">
+                <span class="fa fa-spinner fa-spin fa-3x"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- page script-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+
+    function modal() {
+        $('.modal').modal('show');
+        //setTimeout(function () {
+        //    console.log('hejsan');
+            
+        //}, 3000);
+    }
+
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    //google.charts.setOnLoadCallback(LoadData);
+
+    function LoadData()
+    {
+        $('.modal').modal('show');
+        $.ajax(
+            {
+                type: "GET",
+                dataType: "json",
+                //url: 'RelatorioVendasEV/buscarDadosJSon',
+                url: '@Url.Action("buscarDadosJSon", "RelatorioVendasEV")',
+                data: {
+                    pAno: $('#cboAno').val()
+                },
+
+                error: function (xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    $('.modal').modal('show');
+                    //alert(err);
+                    //toastr.error(err.message);
+                },
+                success: function (data)
+                {
+                    //drawChart();
+                    PopulationChart(data);
+                    PopulationChartPend(data);
+                    PopulationChartCance(data);
+                    PopulationChartErro(data);
+                    $('.modal').modal('hide');
+                    return false;
+                }
+            });
+        return false;
+    }
+
+
+    function PopulationChart(data) {
+        var dataArray = [
+            //['Mes','Concluido','Pendente','Cancelado','Erro']
+            ['Mes', 'Concluido']
+        ];
+        $.each(data, function (i, item) {
+            //dataArray.push([item.mes, item.qtdConcluido, item.qtdPendente, item.qtdCancelado, item.qtdErro]);
+            dataArray.push([inteiroParaMes(item.mes), item.qtdConcluido]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+
+        var options = {
+            //title: 'Total de vendas(Mensal) ',
+            chartArea: {
+                width: '50%'
+            },
+            colors: ['#0ab746'],
+            hAxis: {
+                title: 'Mes'
+            },
+            //vAxis: {
+            //    title: 'Total'
+            //},
+            isStacked: false,
+            legend: { position: "none" }
+        };
+       
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+        
+        return false;
+    }
+
+    function PopulationChartPend(data) {
+        var dataArray = [
+            //['Mes','Concluido','Pendente','Cancelado','Erro']
+            ['Mes', 'Pendente']
+        ];
+        $.each(data, function (i, item) {
+            //dataArray.push([item.mes, item.qtdConcluido, item.qtdPendente, item.qtdCancelado, item.qtdErro]);
+            dataArray.push([inteiroParaMes(item.mes), item.qtdPendente]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            //title: 'Total de vendas(Mensal) ',
+            chartArea: {
+                width: '50%'
+            },
+            //#b0120a
+
+            colors: ['#f2c11b'],
+            hAxis: {
+                title: 'Mes'
+            },
+            //vAxis: {
+            //    title: 'Total'
+            //},
+            isStacked: false,
+            legend: { position: "none" }
+        };
+        
+        var chart = new google.charts.Bar(document.getElementById('chart_div_pend'));
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+        return false;
+    }
+
+    function PopulationChartCance(data) {
+        var dataArray = [
+            //['Mes','Concluido','Pendente','Cancelado','Erro']
+
+            ['Mes', 'Cancelados']
+        ];
+        $.each(data, function (i, item) {
+            //dataArray.push([item.mes, item.qtdConcluido, item.qtdPendente, item.qtdCancelado, item.qtdErro]);
+
+            dataArray.push([inteiroParaMes(item.mes), item.qtdCancelado]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            //title: 'Total de vendas(Mensal) ',
+            chartArea: {
+                width: '50%'
+            },
+
+            colors: ['#b0120a'],
+            hAxis: {
+                title: 'Mes'
+            },
+            //vAxis: {
+            //    title: 'Total'
+            //},
+            isStacked: false,
+            legend: { position: "none" }
+        };
+        
+        var chart = new google.charts.Bar(document.getElementById('chart_div_canc'));
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+        
+        return false;
+    }
+
+    function PopulationChartErro(data) {
+        var dataArray = [
+            //['Mes','Concluido','Pendente','Cancelado','Erro']
+            ['Mes', 'Erro']
+        ];
+        $.each(data, function (i, item) {
+            //dataArray.push([item.mes, item.qtdConcluido, item.qtdPendente, item.qtdCancelado, item.qtdErro]);
+            dataArray.push([inteiroParaMes(item.mes), item.qtdErro]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            //title: 'Total de vendas(Mensal) ',
+            chartArea: {
+                width: '50%'
+            },
+
+            colors: ['#b0120a'],
+            hAxis: {
+                title: 'Mes'
+            },
+            //vAxis: {
+            //    title: 'Total'
+            //},
+            isStacked: false,
+            legend: { position: "none" }
+        };
+        
+        var chart = new google.charts.Bar(document.getElementById('chart_div_erro'));
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+        return false;
+    }
+
+    function inteiroParaMes(mes)
+    {
+        switch (mes) {
+            case 1:
+                return 'Jan';
+                break;
+            case 2:
+                return 'Fev';
+                break;
+            case 3:
+                return 'Mar';
+                break;
+            case 4:
+                return 'Abr';
+                break;
+            case 5:
+                return 'Mai';
+                break;
+            case 6:
+                return 'Jun';
+                break;
+            case 7:
+                return 'Jul';
+                break;
+            case 8:
+                return 'Ago';
+                break;
+            case 9:
+                return 'Set';
+                break;
+            case 10:
+                return 'Out';
+                break;
+            case 11:
+                return 'Nov';
+                break;
+            case 12:
+                return 'Dez';
+                break;
+            // code block
+        }
+    }
+
+</script>

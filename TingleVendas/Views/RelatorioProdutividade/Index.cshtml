@@ -1,0 +1,157 @@
+﻿@model IEnumerable<TingleVendas.Models.RelatorioProdutividade>
+
+
+@{
+    ViewData["Title"] = "Relatório de produtividade de vendas";
+}
+<!--<style>
+    div.dataTables_wrapper {
+        width: 800px;
+        margin: 0 auto;
+    }
+</style>-->
+<!--<div class="text-center">
+    <h1 class="display-4">Olá</h1>
+    <p>Bem-vindo ao sistema de gestão de vendas da MDV</p>
+
+</div>-->
+
+<body onload="grid();">
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <!--<form asp-action="Index" asp-route-pAno="cboAno.Value" asp-route-pMes="cboMes.Value">-->
+            <form asp-action="Index">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Selecione o ano</label>
+                            <input type="number" id="cboAno" name="pAno" class="form-control" style="width:200px" value="@ViewData["anoCorrente"]" min="2020" step="1">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Selecione o mês</label>
+                            <select id="cboMes" name="pMes" class="form-control" asp-items="ViewBag.ListaMeses"></select>
+                        </div>
+                    </div>
+                    @*<div class="col-md-3">
+                        <div class="form-group">
+                            <label>Selecione o supervisor</label>
+                            <select id="cboSupervisor" name="pSupervisor" class="form-control" asp-items="ViewBag.ListaSupervisor"></select>
+                        </div>
+                    </div>*@
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label style="visibility:hidden">Botão</label>
+                            <input type="submit" id="GFG_Button" style="width:150px" value="Pesquisar" class="btn btn-primary btn-block">
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <div class="row">
+            </div>
+        </div>
+    </section>
+
+    <!--<table id="dtprincipal" class="table table-hover table-bordered table-striped">-->
+    <table id="dtprincipal" class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Vendedor Interno
+                </th>
+                <th>
+                    Supervisor Interno
+                </th>
+                <th>
+                    Vendedor Externo
+                </th>
+                <th>
+                    Supervisor Externo
+                </th>
+                <th>
+                    Ano
+                </th>
+                <th>
+                    Mes
+                </th>
+                <th>
+                    Total de vendas
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeVendedorInterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeSupervisorInterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeVendedorExterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeSupervisorExterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ano)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- page script -->
+
+    <script>
+function grid() {
+                $('#dtprincipal').DataTable({
+                    "scrollX": true,
+                    dom: 'lBfrtip',
+                    buttons: [
+                        'copyHtml5',
+                        'excelHtml5',
+                        'csvHtml5',
+                        'pdfHtml5'
+                    ],
+                    "language": {
+                        "lengthMenu": "Mostrar _MENU_&nbsp; &nbsp; &nbsp;",
+                        "zeroRecords": "Nenhum registro",
+                        "info": "Página _PAGE_ de _PAGES_",
+                        "infoEmpty": "Nenhum registro",
+                        "infoFiltered": "(filtrado de _MAX_ total registros)",
+                        "search": "Procurar",
+                        "loadingRecords": "Carregando...",
+                        "processing": "Processando...",
+                        "paginate": {
+                            "first": "Primeiro",
+                            "last": "Último",
+                            "next": "Próximo",
+                            "previous": "Anterior"
+                        }
+                    }
+
+
+                });
+            }
+
+            function searchAdv(busca) {
+
+                var table = $('#dtprincipal').DataTable();
+                table.search(busca).draw();
+
+            }</script>
+</body>

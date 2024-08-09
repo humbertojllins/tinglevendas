@@ -1,0 +1,53 @@
+@model TingleVendas.Models.Vendedor
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar</h1>
+
+<h4>Vendedor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Cpf" class="control-label"></label>
+                <input asp-for="Cpf" class="form-control" data-mask="000.000.000-00" />
+                <span asp-validation-for="Cpf" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdSupervisor" class="control-label">Supervisor</label>
+                <select asp-for="IdSupervisor" class="form-control" asp-items="ViewBag.IdSupervisor"></select>
+                <span asp-validation-for="IdSupervisor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCanalVendas" class="control-label">Canal de vendas</label>
+                <select asp-for="IdCanalVendas" class="form-control" asp-items="ViewBag.IdCanalVendas"></select>
+                <span asp-validation-for="IdCanalVendas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Interno" class="control-label">Vendedor interno?</label>
+                <input type="checkbox" id="Interno" name="Interno" value="true" @(Model.Interno ? "checked=\"checked\"" : "") />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

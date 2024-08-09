@@ -1,0 +1,53 @@
+@model TingleVendas.Models.Vendedor
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Vendedor</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cpf)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            Canal de vendas
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdCanalVendasNavigation.Descricao)
+        </dd>
+        <dt class="col-sm-2">
+            Supervisor
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdSupervisorNavigation.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Interno)
+        </dt>
+        <dd class="col-sm-10">
+            @if (@Model.Interno)
+            {
+    <strong style="color:orangered">Sim</strong> }
+                else
+                {
+    <strong style="color:orangered">Não</strong>            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Voltar</a>
+</div>
